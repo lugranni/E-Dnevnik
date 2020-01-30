@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>"Izbornik Ucenika</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #448ed3;
+}
+
+#nazad {
+  float: left;
+}
+#odjava {
+  float:right;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #45a049;
+}
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #448ed3;
+  color: white;
+}
+#subjects {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#subjects td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#subjects tr:nth-child(even){background-color: #f2f2f2;}
+
+#subjects tr:hover {background-color: #ddd;}
+
+#subjects th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #448ed3;
+  color: white;
+}
+.blank_row
+{
+    height: 50px !important; /* overwrites any other rules */
+    background-color: #FFFFFF;
+}
+
+</style>
+</head>
+<body>
+<ul>
+  <li><a> E-dnevnik</a></li>
+  <li><a id="odjava" href="/">Odjava</a></li>
+
+</ul>
+<br>
+	<table id="customers">
+	<tr>
+		<th>Ime</th>
+		<th>Prezime</th>
+		<th>Username</th>
+		<th>Razred</th>
+		<th>Odjeljenje</th>
+		
+	</tr>
+	
+	<tr>
+		<td>{{ podaci[0] }}</td>
+		<td>{{ podaci[1]  }}</td>
+		<td>{{ podaci[3] }}</td>
+		<td>{{ podaci[4]  }}</td>
+		<td>{{ podaci[5] }}</td>		
+	</tr>
+	<tr><td><b>Prosjek ocjena: {{ukupan_prosjek}}</b></td> </tr>
+	</table>
+	<table id="customers">
+		<tr class="blank_row">
+			<td colspan="3"></td>
+		</tr>
+	% for k in ocjene.keys():
+	<tr>
+		<td><b>{{ k }}</b></td>
+		<td> <b>Prosjek: {{ prosjek_p_p.get(k)}}</b></td>
+
+	</tr>
+		<tr>
+		<th>Ocjena</th>
+		<th>Datum</th>
+		<th>Nastavnik</th>
+
+	</tr>
+	<tr>
+	</tr>
+	<tr></tr>
+	%for ocjena,datum,nastavnik in ocjene[k]:
+		<tr>
+			<td>{{ ocjena }}</td>
+			<td>{{ datum  }}</td>
+			<td>{{ nastavnik }}</td>		
+		</tr>
+		
+		
+	%end
+	<tr class="blank_row">
+    <td colspan="3"></td>
+	</tr>
+
+
+	% end
+	</table>
+
+
+
+
+
+
+</body>
+</html>

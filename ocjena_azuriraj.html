@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<title>{{get("title")}} </title>
+<style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #448ed3;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #45a049;
+}
+
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #448ed3;
+  color: white;
+}
+
+.button {
+  background-color: #1c87c9;
+   border: none;
+    color: white;
+         padding: 20px 34px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 20px;
+         margin: 4px 2px;
+         cursor: pointer;
+         }
+
+
+input[type=submit] {
+  background-color: #448ed3;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 50%;
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+
+<ul>
+  <li><a>{{ime}}</a></li>
+  <li><a>{{prezime}}</a></li>
+  <li><a>{{un}}</a></li>
+  <li> </li>
+</ul>
+<br>
+	<table id="customers">
+	<tr>
+		<th>Ucenik: {{rp_o[0]}} </th>
+		<th>Trenutna ocjena:{{rp_o[1]}}</th>
+		<th>Predmet:{{rp_o[2]}}</th>
+		<th>Datum: {{rp_o[3]}}</th>
+	</tr>
+
+</table>
+<h3>Azuriranje ocjene:</hr>
+<br>
+	<div class="container">
+  <form action="/submit_ocjena", method="post">
+  
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">Nova ocjena:</label>
+    </div>
+    <div class="col-75">
+	  	    <select type="text" name="ocjena" >
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+	<option value="5">5</option>
+  </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Novi datum:</label>
+    </div>
+    <div class="col-75">
+	<input type="date" id="start" name="datum"
+       value={{rp_o[3]}}
+       min="2020-01-01" max="2020-12-31">
+      
+    </div>
+  </div>
+  
+
+  <div class="row">
+  		<input type="hidden" name="maticni_ucenik" value={{maticni_ucenika}} >
+		<input type="hidden" name="maticni_razred" value={{maticni_razreda}} >
+		<input type="hidden" name="maticni_predmet" value={{maticni_predmeta}} >
+			<input type="hidden" name="maticni_ocjena" value={{mb}} >
+		<input type="hidden" name="ime_nastavnik" value={{ime}} >
+		<input type="hidden" name="prezime_nastavnik" value={{prezime}} >
+    <input type="submit" name="action" value="Azuriraj">
+
+  </div>
+  <br>
+  <div class="row"><input type="submit" name="action" value="Nazad"></div>
+  
+  </form>
+</div>
+</body>
+
+</html>
